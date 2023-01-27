@@ -26,6 +26,25 @@ namespace QuartzConsoleAppTrail2.Schedular
             this.jobMetadatas = jobMetadatas;
         }
 
+        #region Private
+        private ITrigger CreateTrigger(JobMetadata jobMetadata)
+        {
+            return TriggerBuilder.Create()
+                .WithIdentity(jobMetadata.JobId.ToString())
+                .WithCronSchedule(jobMetadata.CronExpression)
+                .WithDescription(jobMetadata.JobName)
+                .Build();
+        }
+
+        private IJobDetail CreateJob(JobMetadata jobMetadata)
+        {
+            return JobBuilder.Create(jobMetadata.JobType)
+                .WithIdentity(jobMetadata.JobId.ToString())
+                .WithDescription(jobMetadata.JobName)
+                .Build();
+        }
+        #endregion
+
         #region Public
         public async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -68,25 +87,6 @@ namespace QuartzConsoleAppTrail2.Schedular
         {
             await Scheduler.Shutdown();
         }
-
         #endregion
-
-
-        private ITrigger CreateTrigger(JobMetadata jobMetadata)
-        {
-            return TriggerBuilder.Create()
-                .WithIdentity(jobMetadata.JobId.ToString())
-                .WithCronSchedule(jobMetadata.CronExpression)
-                .WithDescription(jobMetadata.JobName)
-                .Build();
-        }
-
-        private IJobDetail CreateJob(JobMetadata jobMetadata)
-        {
-            return JobBuilder.Create(jobMetadata.JobType)
-                .WithIdentity(jobMetadata.JobId.ToString())
-                .WithDescription(jobMetadata.JobName)
-                .Build();
-        }
     }
 }
