@@ -1,14 +1,8 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Quartz;
-using Quartz.Impl;
 using Quartz.Spi;
 using QuartzConsoleAppTrail2.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuartzConsoleAppTrail2.Schedular
 {

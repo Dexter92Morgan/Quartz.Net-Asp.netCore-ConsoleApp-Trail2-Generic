@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuartzConsoleAppTrail2.Models
+﻿namespace QuartzConsoleAppTrail2.Models
 {
     public class JobMetadata
     {
